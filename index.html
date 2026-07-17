@@ -3,389 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>® 𝗥𝗢𝗠𝗔𝗡𝗬 𝗚𝗔𝗥𝗚𝗘𝗦 | Portfolio</title>
-    <!-- Google Fonts -->
+    <title>ROMANY GARGES | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* الألوان الأساسية والتأثيرات */
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #151c2c;
-            --accent-cyan: #00f2fe;
-            --accent-purple: #4facfe;
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --glow-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+            --bg: #060816;
+            --panel: rgba(12, 19, 34, 0.95);
+            --panel-2: rgba(255,255,255,0.06);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --accent: #2dd4bf;
+            --accent-2: #8b5cf6;
+            --danger: #ff5d73;
+            --shadow: 0 24px 60px rgba(0,0,0,0.35);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', 'Poppins', sans-serif;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Cairo', 'Poppins', sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(45, 212, 191, 0.2), transparent 28%),
+                radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.22), transparent 30%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* خلفية مضيئة متحركة */
-        .background-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        .background-glow::before, .background-glow::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple));
-            filter: blur(150px);
-            opacity: 0.15;
-            animation: floatGlow 10s infinite alternate;
-        }
-        .background-glow::after {
-            bottom: 10%;
-            right: 10%;
-            animation-delay: -5s;
+        .bg-orb {
+            position: fixed; inset: 0; pointer-events: none; z-index: -1;
+            background-image:
+                radial-gradient(circle at 10% 10%, rgba(34,211,238,0.12), transparent 18%),
+                radial-gradient(circle at 90% 20%, rgba(139,92,246,0.16), transparent 20%),
+                radial-gradient(circle at 80% 80%, rgba(255,93,115,0.1), transparent 18%);
+            filter: blur(24px);
         }
 
-        @keyframes floatGlow {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        /* الحاوية الرئيسية */
         .container {
-            max-width: 1100px;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 32px 18px 60px;
         }
 
-        /* الهيدر والكارت الشخصي */
-        .profile-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        .hero {
+            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 32px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 28px;
             position: relative;
             overflow: hidden;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
         }
 
-        .profile-card::before {
-            content: '';
+        .hero::before {
+            content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.06), transparent);
+            transform: translateX(-100%);
+            animation: shine 6s infinite;
         }
 
-        /* مربع الصورة الاحترافي مع الإضاءة */
-        .avatar-wrapper {
-            position: relative;
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 25px;
+        @keyframes shine {
+            100% { transform: translateX(100%); }
         }
 
-        .avatar-box {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px; /* تصميم مربع بزوايا دائرية ناعمة كما طلبت */
-            object-fit: cover;
-            border: 3px solid transparent;
-            background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-                        linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)) border-box;
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .avatar-wrapper:hover .avatar-box {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 0 35px rgba(0, 242, 254, 0.6);
-        }
-
-        /* الأسماء والنصوص */
-        .name-en {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-        }
-
-        .name-ar {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-
-        .bio-text {
-            font-size: 1.1rem;
-            max-width: 750px;
-            margin: 0 auto 30px;
-            color: #e2e8f0;
-            text-align: center;
-        }
-
-        /* أزرار التواصل السريع */
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn-social {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-main);
-            padding: 10px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: flex;
+        .badge {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
+            background: rgba(45, 212, 191, 0.15);
+            color: #b7f5ff;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            margin-bottom: 12px;
+            border: 1px solid rgba(45, 212, 191, 0.25);
         }
 
-        .btn-social:hover {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: #000;
-            box-shadow: var(--glow-shadow);
-            transform: translateY(-3px);
-            border-color: transparent;
-        }
-
-        /* العناوين الجانبية للأقسام */
-        .section-title {
-            font-size: 1.5rem;
-            margin: 40px 0 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-main);
-            border-right: 4px solid var(--accent-cyan);
-            padding-right: 12px;
-        }
-
-        /* شبكة المشاريع والخبرات */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 18px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 242, 254, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            color: var(--accent-cyan);
-            margin-bottom: 15px;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
+        .hero h1 {
+            font-size: clamp(1.8rem, 3.2vw, 2.7rem);
             margin-bottom: 10px;
             font-weight: 700;
         }
 
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+        .hero .name-en {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* أزرار استعراض المشاريع */
-        .btn-project {
+        .hero .name-ar {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            color: #dbeafe;
+            font-size: 1rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 12px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--accent-cyan);
+            font-weight: 600;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: #041018;
+            box-shadow: 0 12px 24px rgba(45, 212, 191, 0.24);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.07);
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .avatar-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+
+        .avatar-card img {
+            width: 100%;
+            max-width: 260px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.12);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.04rem;
+            color: #fff;
+        }
+
+        .section {
+            margin-top: 24px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            font-size: 1.15rem;
+            color: white;
+        }
+
+        .section-title i {
+            color: var(--accent);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(45, 212, 191, 0.35);
+            box-shadow: 0 28px 60px rgba(0,0,0,0.32);
+        }
+
+        .card .icon {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .card a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            color: var(--accent);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.3s;
         }
 
-        .btn-project:hover {
-            color: var(--accent-purple);
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 240px;
         }
 
-        /* تأثيرات خاصة بقسم الاختراقات والحماية */
-        .cyber-card {
-            border-right: 3px solid #ff4a5a !important;
-        }
-        .cyber-icon {
-            color: #ff4a5a !important;
-        }
-        .cyber-badge {
-            background: rgba(255, 74, 90, 0.1);
-            color: #ff4a5a;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            margin-right: 8px;
-            display: inline-block;
+        .project-content {
+            position: relative;
+            z-index: 1;
         }
 
-        /* تذييل الصفحة */
-        footer {
+        .project-card-overlay {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            background: rgba(255, 93, 115, 0.16);
+            border: 1px solid rgba(255, 93, 115, 0.32);
+            color: #ffd8de;
+            padding: 6px 8px;
+            border-radius: 999px;
             text-align: center;
-            margin-top: 60px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            z-index: 2;
+            backdrop-filter: blur(2px);
         }
 
-        /* لتوافقه مع الهواتف الصغيرة */
+        .danger-card { border-right: 3px solid var(--danger); }
+        .danger-card .icon { color: var(--danger); }
+
+        .pill {
+            display: inline-block;
+            background: rgba(255,93,115,0.12);
+            color: var(--danger);
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 999px;
+            margin-right: 8px;
+        }
+
+        footer {
+            margin-top: 32px;
+            text-align: center;
+            padding: 16px 10px 0;
+            color: var(--muted);
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 600px) {
-            .name-en { font-size: 1.6rem; }
-            .profile-card { padding: 25px 15px; }
-            .social-buttons { flex-direction: column; }
+            .container { padding: 18px 14px 40px; }
+            .hero { padding: 18px; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .hero-actions { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-
-    <div class="background-glow"></div>
-
+    <div class="bg-orb"></div>
     <div class="container">
-        
-        <!-- الكارت الشخصي الرئيسي -->
-        <header class="profile-card">
-            <div class="avatar-wrapper">
-                <!-- تم وضع رابط صورتك هنا مباشرة -->
-                <img src="https://i.postimg.cc/JnKrHW7z/IMG-20260524-012906.png" alt="ROMANY GARGES" class="avatar-box">
+        <section class="hero">
+            <div>
+                <div class="badge"><i class="fas fa-star"></i> Portfolio • 2026</div>
+                <h1 class="name-en">® ROMANY GARGES</h1>
+                <p class="name-ar">روماني جرجس — مهندس برمجيات ومطور ويب محترف</p>
+                <p>أنا أعمل على بناء مواقع وتطبيقات حديثة مع تركيز قوي على الأداء والأمان، وأقدم أيضاً خدمات فحص وتأمين السيرفرات والتطبيقات.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="https://wa.me/201027675035" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a>
+                </div>
             </div>
-            
-            <h1 class="name-en">® 𝗥𝗢𝗠𝗔𝗡𝗬 𝗚𝗔𝗥𝗚𝗘𝗦</h1>
-            <p class="name-ar">روماني جرجس — مهندس برمجيات ومطور ويب محترف</p>
-            
-            <p class="bio-text">
-                أنا مصمم ومطور ويب محترف وخبير في حماية وتأمين السيرفرات. أمتلك خبرة قوية في بناء المواقع والتطبيقات بأحدث التقنيات، إلى جانب القدرة على فحص الأنظمة وسد الثغرات الأمنية لضمان أعلى مستويات الأمان والأداء لمشروعك.
-            </p>
-
-            <!-- أزرار تواصل سريعة وجذابة -->
-            <div class="social-buttons">
-                <a href="https://wa.me/201286716976" target="_blank" class="btn-social">
-                    <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
-                </a>
-                <a href="https://github.com/romeo311020" target="_blank" class="btn-social">
-                    <i class="fab fa-github"></i> حساب GitHub
-                </a>
+            <div class="avatar-card">
+                <img src="https://i.postimg.cc/JnKrHW7z/IMG-20260524-012906.png" alt="ROMANY GARGES">
+                <div class="stat-grid">
+                    <div class="stat"><strong>Web</strong><span>تصميم وتطوير</span></div>
+                    <div class="stat"><strong>Security</strong><span>اختبار وتأمين</span></div>
+                    <div class="stat"><strong>Android</strong><span>تعديل وتطوير</span></div>
+                </div>
             </div>
-        </header>
+        </section>
 
-        <!-- قسم المشاريع -->
-        <main>
-            <h2 class="section-title"><i class="fas fa-laptop-code"></i> نبذة عن مشاريعي</h2>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-user-circle"></i> نبذة عني</h2>
+            <div class="card">
+                <p>أنا مصمم ومطور ويب محترف وخبير في حماية وتأمين السيرفرات. أمتلك خبرة قوية في بناء المواقع والتطبيقات بأحدث التقنيات، إلى جانب القدرة على فحص الأنظمة وسد الثغرات الأمنية لضمان أعلى مستويات الأمان والأداء لمشروعك.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-tools"></i> خدماتي</h2>
             <div class="grid">
-                
-                <!-- مشروع ROMEO LIVE TV -->
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-tv"></i></div>
-                    <h3 class="card-title">ROMEO LIVE TV</h3>
-                    <p class="card-desc">منصة ويب متكاملة لبث المباريات والأفلام، تم بناؤها وتصميمها بواجهات ذكية وتجربة مستخدم ممتازة متوافقة مع جميع الشاشات.</p>
-                    <a href="https://romeo311020.github.io/romeo-live-tv-31/" target="_blank" class="btn-project">
-                        معاينة المشروع <i class="fas fa-external-link-alt"></i>
-                    </a>
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>تصميم وتطوير المواقع</h3>
+                    <p>بناء واجهات حديثة وسريعة مع تجربة مستخدم ممتازة ومناسبة للجوال والسطح.</p>
                 </div>
-
-                <!-- مشروع ROMEO IDE -->
+                <div class="card danger-card">
+                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>أمن السيرفرات والأنظمة</h3>
+                    <p>فحص الثغرات، اختبار الاختراق، وتأمين السيرفرات الخاصة بالملفات والتطبيقات.</p>
+                </div>
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-code"></i></div>
-                    <h3 class="card-title">ROMEO CodePad / IDE</h3>
-                    <p class="card-desc">بيئة تطوير متكاملة ومحرر أكواد متطور ومستقر يعمل عبر المتصفح مباشرة، يدعم كتابة وتجربة الأكواد بشكل فوري وبكفاءة عالية.</p>
-                    <a href="https://romeo311020.github.io/ROMEO-IDE/" target="_blank" class="btn-project">
-                        معاينة المشروع <i class="fas fa-external-link-alt"></i>
-                    </a>
+                    <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>تعديل تطبيقات الأندرويد</h3>
+                    <p>تطوير وتعديل تطبيقات المراسلة مثل WhatsApp وإضافة ميزات متقدمة مع الحفاظ على الاستقرار والأمان.</p>
                 </div>
-
             </div>
+        </section>
 
-            <!-- قسم الحماية والاختراق -->
-            <h2 class="section-title"><i class="fas fa-shield-alt"></i> الأمن السيبراني واختبار الاختراق</h2>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-rocket"></i> أفضل مشاريعي</h2>
             <div class="grid">
-                
-                <!-- متميز ف اختراقات السيرفرات -->
-                <div class="card cyber-card">
-                    <div class="card-icon cyber-icon"><i class="fas fa-server"></i></div>
-                    <h3 class="card-title">اختراق وتأمين السيرفرات <span class="cyber-badge">خبير</span></h3>
-                    <p class="card-desc">متميز ومتخصص في فحص واختبار اختراق سيرفرات الميديا (الفيديوهات والأغاني)، بالإضافة إلى سيرفرات استضافة الملفات والتطبيقات، مما يمنحني القدرة الكاملة على سد ثغراتها وتأمينها ضد أي هجمات.</p>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>منصة مدرس رياضيات</h3>
+                    <p>منصة تعليمية تتيح للطالب الحجز عبر الموقع ومشاهدة الفيديوهات المجانية بسهولة وبدون تعقيد.</p>
+                    <a href="https://romeo311020.github.io/mina-diad/#" target="_blank">زيارة المنصة <i class="fas fa-arrow-left"></i></a>
                 </div>
-
-                <!-- متميز ف بناء تطبيقات معدلة -->
-                <div class="card cyber-card">
-                    <div class="card-icon cyber-icon"><i class="fab fa-whatsapp"></i></div>
-                    <h3 class="card-title">تعديل وتطوير تطبيقات الأندرويد</h3>
-                    <p class="card-desc">تفكيك وإعادة بناء تطبيقات الـ Android وبشكل خاص تطبيقات المراسلة مثل WhatsApp وتعديلها وإضافة ميزات متقدمة وحصرية مع الحفاظ على استقرار التطبيق وأمان بياناته.</p>
+                <div class="card project-card">
+                    <div class="project-card-overlay">
+                        <div>
+                            <h4>المنصة تحت الصيانة</h4>
+                            <p>منصة مسارك التعليمي</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3>منصة مسارك التعليمي</h3>
+                        <p>منصة متكاملة للمدرسين الأونلاين مع حماية عالية واحترافية، وتعمل على تقديم تجربة تعليمية ممتازة.</p>
+                        <a href="https://romeo311020.github.io/Your-educational-path-/" target="_blank">زيارة المنصة <i class="fas fa-arrow-left"></i></a>
+                    </div>
                 </div>
-
             </div>
-        </main>
+        </section>
 
-        <!-- التذييل -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-shield-virus"></i> خبرة الحماية</h2>
+            <div class="grid">
+                <div class="card danger-card">
+                    <div class="icon"><i class="fas fa-server"></i></div>
+                    <h3>اختراق وتأمين السيرفرات <span class="pill">خبير</span></h3>
+                    <p>متخصص في فحص واختبار اختراق سيرفرات الميديا، استضافة الملفات والتطبيقات، مع القدرة على سد الثغرات بشكل فعّال.</p>
+                </div>
+                <div class="card danger-card">
+                    <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>تعديل وتطوير تطبيقات الأندرويد</h3>
+                    <p>تفكيك وإعادة بناء تطبيقات Android الخاصة بالمراسلة مثل WhatsApp وإضافة ميزات حصرية مع الاستقرار والأمان.</p>
+                </div>
+            </div>
+        </section>
+
         <footer>
-            <p>© 2026 ROMANY GARGES. جميع الحقوق محفوظة ®</p>
+            <p>© 2026 ROMANY GARGES — جميع الحقوق محفوظة ®</p>
         </footer>
-
     </div>
-
-    <!-- تأثر حركي خفيف وجذاب عند التمرير بالماوس على الكروت -->
-    <script>
-        const cards = document.querySelectorAll('.card, .profile-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-    </script>
 </body>
 </html>
